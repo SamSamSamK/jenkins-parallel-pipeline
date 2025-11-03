@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo "Running build for ${env.BRANCH_NAME}"
+                sh './build.sh'
+            }
+        }
+    }
+    post {
+        always {
+            echo "Build finished for ${env.BRANCH_NAME}"
+        }
+    }
+}
